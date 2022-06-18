@@ -63,16 +63,17 @@ namespace platzi_asp_net_core
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            
+            app.UseRouting();//error message suggested to implement this
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Escuela}/{action=Index}/{id?}");
+                    pattern: "{controller=Escuela}/{action=Index}/{id?}");
             });
         }
     }
